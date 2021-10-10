@@ -1,3 +1,4 @@
+import './pagination.scss';
 export function Pagination() {
     return (
         <div className="pagination-container">

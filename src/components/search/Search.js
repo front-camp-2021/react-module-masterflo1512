@@ -1,3 +1,4 @@
+import './search.scss';
 export function Search() {
     return (
         <div className="header-search">

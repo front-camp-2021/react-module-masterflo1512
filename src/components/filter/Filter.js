@@ -1,3 +1,4 @@
+import './filter.scss';
 export function Filter() {
     return (
         <div className="filters-container">
