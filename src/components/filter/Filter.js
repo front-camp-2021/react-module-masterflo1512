@@ -1,15 +1,107 @@
 import './filter.scss';
+import { FilterList } from './filter-list/FilterList.js'
+
+
+
 export function Filter() {
+    const categoriesList = [
+        {
+            title: "cell phones",
+            value: 1920,
+        },
+        {
+            title: "Computers & Tablets",
+            value: 1820,
+        },
+        {
+            title: "Cell Phone Accessories",
+            value: 462,
+        },
+        {
+            title: "Appliances",
+            value: 6556,
+        },
+        {
+            title: "Audio",
+            value: 120,
+        },
+        {
+            title: "iPhone Accessories",
+            value: 353,
+        },
+        {
+            title: "Cameras & Camcorders",
+            value: 45,
+        },
+        {
+            title: "iPhone Cases & Clips",
+            value: 456,
+        },
+        {
+            title: "TV & Home Theater",
+            value: 55,
+        },
+        {
+            title: "cSmall Kitchen Appliances",
+            value: 10,
+        }
+    ]
+
+
+    const brandsList = [
+        {
+            title: "Insigni",
+            value: 220,
+        },
+        {
+            title: "Samsung",
+            value: 120,
+        },
+        {
+            title: "Apple",
+            value: 320,
+        },
+        {
+            title: "HP",
+            value: 32,
+        },
+        {
+            title: "Sony",
+            value: 520,
+        },
+        {
+            title: "Metra",
+            value: 55,
+        },
+        {
+            title: "Dyne",
+            value: 120,
+        },
+        {
+            title: "LG",
+            value: 98,
+        },
+        {
+            title: "Canon",
+            value: 99,
+        },
+        {
+            title: "Speck",
+            value: 575,
+        }
+    ]
+
+
     return (
         <div className="filters-container">
             <div className="filters-header">
                 <h2>Filters</h2>
                 <button className="collapse-filters-btn">
                     <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.90919 1.01861L1.12124 6.51335L6.88861 12.0297" stroke="black" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M6.90919 1.01861L1.12124 6.51335L6.88861 12.0297" stroke="black" stroke-linecap="round"
-                            stroke-linejoin="round" />
+                        <path d="M6.90919 1.01861L1.12124 6.51335L6.88861 12.0297" stroke="black" strokeLinecap="round"
+                            strokeLinejoin="round" />
+                        <path d="M6.90919 1.01861L1.12124 6.51335L6.88861 12.0297" stroke="black" strokeLinecap="round"
+                            strokeLinejoin="round" />
                     </svg>
                 </button>
             </div>
@@ -50,152 +142,9 @@ export function Filter() {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <div className="category">
-                    <h3 className="filter-title">Category</h3>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Cell Phones
-                        </label>
-                        <span className="amount">1920</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Computers & Tablets
-                        </label>
-                        <span className="amount">1820</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Cell Phone Accessories
-                        </label>
-                        <span className="amount">462</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Appliances
-                        </label>
-                        <span className="amount">6556</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Audio
-                        </label>
-                        <span className="amount">120</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            iPhone Accessories
-                        </label>
-                        <span className="amount">353</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Cameras & Camcorders
-                        </label>
-                        <span className="amount">45</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            iPhone Cases & Clips
-                        </label>
-                        <span className="amount">456</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            TV & Home Theater
-                        </label>
-                        <span className="amount">55</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Small Kitchen Appliances
-                        </label>
-                        <span className="amount">10</span>
-                    </div>
-                </div>
+                <FilterList list={categoriesList} title="Category" />
                 <div className="divider"></div>
-                <div className="brand">
-                    <h3 className="filter-title">Brand</h3>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Insigni
-                        </label>
-                        <span className="amount">220</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Samsung
-                        </label>
-                        <span className="amount">120</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Apple
-                        </label>
-                        <span className="amount">320</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            HP
-                        </label>
-                        <span className="amount">32</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Sony
-                        </label>
-                        <span className="amount">520</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Metra
-                        </label>
-                        <span className="amount">55</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Dyne
-                        </label>
-                        <span className="amount">120</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            LG
-                        </label>
-                        <span className="amount">98</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label><input type="checkbox" name="category" />
-                            Canon
-                        </label>
-                        <span className="amount">99</span>
-                    </div>
-                    <div className="form-checkbox-category">
-                        <label>
-                            <input type="checkbox" name="category" />
-                            Speck
-                        </label>
-                        <span className="amount">575</span>
-                    </div>
-                </div>
+                <FilterList list={brandsList} title="Brand" />
             </div>
             <div className="btn">
                 <button className="btn-filters">
