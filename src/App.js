@@ -3,6 +3,7 @@ import { Filter } from './components/filter/Filter.js'
 import { Search } from './components/search/Search.js'
 import { Productlist } from './components/product-list/Product-list.js'
 import { Pagination } from './components/pagination/Pagination.js'
+import { products } from './fixtures/products.js'
 function App() {
   return (
     <div className="container">
@@ -13,7 +14,7 @@ function App() {
         </div>
         <div className="col-md-8 col-ms-6">
           <Search />
-          <Productlist />
+          <Productlist list={products} />
         </div>
       </div>
       <Pagination />
@@ -22,3 +23,4 @@ function App() {
 }
 
 export default App;
+
