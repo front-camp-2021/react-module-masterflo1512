@@ -17,7 +17,7 @@ function App() {
           <Productlist list={products} />
         </div>
       </div>
-      <Pagination />
+      <Pagination pages={9} />
     </div>
   );
 }

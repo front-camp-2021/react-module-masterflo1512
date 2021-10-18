@@ -148,7 +148,7 @@ export function Filter() {
             </div>
             <div className="btn">
                 <button className="btn-filters">
-                    <span className="button-title">clear all filters</span>
+                    <span className="btn-title">clear all filters</span>
                 </button>
             </div>
         </div>
