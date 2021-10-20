@@ -5,7 +5,8 @@ import iphoneX from './iphone-x.jpg';
 import jblSpeaker from './jbl-speaker.jpg';
 import CardItem from './CardItem.js';
 
-console.log(applewatch);
+
+
 export function Productlist(props) {
 
     return (
