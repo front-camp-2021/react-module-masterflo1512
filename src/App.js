@@ -4,7 +4,17 @@ import { Search } from './components/search/Search.js'
 import { Productlist } from './components/product-list/Product-list.js'
 import { Pagination } from './components/pagination/Pagination.js'
 import { products } from './fixtures/products.js'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 function App() {
+
+  const [products, setproducts] = useState([])
+  console.log(products);
+  useEffect(() => {
+    axios.get('http://localhost:3001/products')
+      .then(res => setproducts(res.data))
+  }, [])
+
   return (
     <div className="container">
       <Header />
