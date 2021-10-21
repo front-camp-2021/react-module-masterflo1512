@@ -29,7 +29,7 @@ export function Pagination(props) {
                         classes += ' active'
                     }
                     return (
-                        <li className={classes}><a href="#" onClick={(e) => {
+                        <li className={classes} key={page}><a href="#" onClick={(e) => {
                             e.preventDefault()
                             setCurrentButton(page)
                         }}>{page}</a></li>

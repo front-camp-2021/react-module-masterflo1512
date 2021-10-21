@@ -1,8 +1,6 @@
 import { FilterItem } from "../filter-item/FilterItem";
 
 export function FilterList(props) {
-
-
     return (
         <>
             <div className="category">
