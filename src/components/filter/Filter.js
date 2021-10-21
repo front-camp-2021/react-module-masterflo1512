@@ -1,97 +1,33 @@
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import './filter.scss';
 import { FilterList } from './filter-list/FilterList.js'
-
-
+import { backendUrl } from '../../constants'
 
 export function Filter() {
-    const categoriesList = [
-        {
-            title: "cell phones",
-            value: 1920,
-        },
-        {
-            title: "Computers & Tablets",
-            value: 1820,
-        },
-        {
-            title: "Cell Phone Accessories",
-            value: 462,
-        },
-        {
-            title: "Appliances",
-            value: 6556,
-        },
-        {
-            title: "Audio",
-            value: 120,
-        },
-        {
-            title: "iPhone Accessories",
-            value: 353,
-        },
-        {
-            title: "Cameras & Camcorders",
-            value: 45,
-        },
-        {
-            title: "iPhone Cases & Clips",
-            value: 456,
-        },
-        {
-            title: "TV & Home Theater",
-            value: 55,
-        },
-        {
-            title: "cSmall Kitchen Appliances",
-            value: 10,
-        }
-    ]
+    const [categoriesList, setCategoriesList] = useState([])
+    const [brandsList, setBrandsList] = useState([])
+    useEffect(() => {
+        axios.get(`${backendUrl}categories`)
+            .then(res => {
+                setCategoriesList(res.data.map(category => {
+                    return {
+                        title: category,
+                        value: 100
+                    }
+                }))
+            })
+        axios.get(`${backendUrl}brands`)
+            .then(res => {
+                setBrandsList(res.data.map(brand => {
+                    return {
+                        title: brand,
+                        value: 100
+                    }
+                }))
+            })
 
-
-    const brandsList = [
-        {
-            title: "Insigni",
-            value: 220,
-        },
-        {
-            title: "Samsung",
-            value: 120,
-        },
-        {
-            title: "Apple",
-            value: 320,
-        },
-        {
-            title: "HP",
-            value: 32,
-        },
-        {
-            title: "Sony",
-            value: 520,
-        },
-        {
-            title: "Metra",
-            value: 55,
-        },
-        {
-            title: "Dyne",
-            value: 120,
-        },
-        {
-            title: "LG",
-            value: 98,
-        },
-        {
-            title: "Canon",
-            value: 99,
-        },
-        {
-            title: "Speck",
-            value: 575,
-        }
-    ]
-
-
+    }, [])
     return (
         <div className="filters-container">
             <div className="filters-header">
