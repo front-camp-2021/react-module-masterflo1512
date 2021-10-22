@@ -9,11 +9,13 @@ import { backendUrl } from './constants'
 
 function App() {
   const [products, setproducts] = useState([])
-  useEffect(() => {
-    axios.get(`${backendUrl}products`)
-      .then(res => setproducts(res.data))
-  }, [])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchData, setSearchData] = useState('')
 
+  useEffect(() => {
+    axios.get(`${backendUrl}products?_limit=10&_page=${currentPage}&q=${searchData}`)
+      .then(res => setproducts(res.data))
+  }, [currentPage, searchData])
   return (
     <div className="container">
       <Header />
@@ -22,11 +24,12 @@ function App() {
           <Filter />
         </div>
         <div className="col-md-8 col-ms-6">
-          <Search />
+          <Search searchData={searchData} setSearchData={setSearchData} />
           <Productlist list={products} />
         </div>
       </div>
-      <Pagination pages={9} />
+      <Pagination pages={9} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+
     </div>
   );
 }
