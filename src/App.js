@@ -8,14 +8,22 @@ import { Pagination } from './components/pagination/Pagination.js'
 import { backendUrl } from './constants'
 
 function App() {
-  const [products, setproducts] = useState([])
+  const [products, setProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [searchData, setSearchData] = useState('')
+  const [totalProducts, setTotalProducts] = useState(0)
+
 
   useEffect(() => {
     axios.get(`${backendUrl}products?_limit=10&_page=${currentPage}&q=${searchData}`)
-      .then(res => setproducts(res.data))
+      .then(res => {
+        setProducts(res.data)
+        setTotalProducts(Number(res.headers['x-total-count']))
+      })
   }, [currentPage, searchData])
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchData])
   return (
     <div className="container">
       <Header />
@@ -24,11 +32,11 @@ function App() {
           <Filter />
         </div>
         <div className="col-md-8 col-ms-6">
-          <Search searchData={searchData} setSearchData={setSearchData} />
+          <Search searchData={searchData} setSearchData={setSearchData} totalProducts={totalProducts} />
           <Productlist list={products} />
         </div>
       </div>
-      <Pagination pages={9} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination pages={Math.ceil(totalProducts / 10)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
     </div>
   );

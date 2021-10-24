@@ -1,7 +1,8 @@
 import './search.scss';
 export function Search(props) {
-    const setSearchData = props.setSearchData
-    const searchData = props.searchData
+    const { setSearchData, searchData, totalProducts } = props
+
+
     const handleFilter = (event) => {
         const searchWord = event.target.value
         setSearchData(searchWord)
@@ -11,7 +12,7 @@ export function Search(props) {
         <div className="header-search">
             <div className="result-search-icon">
                 <div className="search-result">
-                    7618 results found
+                    {totalProducts > 0 ? `${totalProducts} results found` : ''}
                 </div>
                 <button className="btn-favorite">
                     <svg width="18" height="15" viewBox="0 0 18 15" fill="#6F64F8" xmlns="http://www.w3.org/2000/svg">
