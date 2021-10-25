@@ -1,12 +1,10 @@
 import { FilterItem } from "../filter-item/FilterItem";
 
-export function FilterList(props) {
+export function FilterList({ setFilter, list, title }) {
     return (
-        <>
-            <div className="category">
-                <h3 className="filter-title">{props.title}</h3>
-                {props.list.map(item => <FilterItem title={item.title} value={item.value} key={item.title} />)}
-            </div>
-        </>
+        <div className="category">
+            <h3 className="filter-title">{title}</h3>
+            {list.map(item => <FilterItem title={item.title} value={item.value} setFilter={setFilter} key={item.title} />)}
+        </div>
     );
 }

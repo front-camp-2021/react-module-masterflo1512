@@ -1,12 +1,24 @@
+export function getId(productName) {
+    return productName.toLowerCase().split(" ").join("_");
+}
 
-export function FilterItem(props) {
+export function FilterItem({ setFilter, title, value }) {
+    function onChange(e) {
+        setFilter((filters) => {
+            if (e.target.checked) {
+                return filters.concat(getId(title))
+            } else {
+                return filters.filter(id => id !== getId(title))
+            }
+        })
+    }
     return (
         <div className="form-checkbox-category">
             <label>
-                <input type="checkbox" name="category" />
-                {props.title}
+                <input type="checkbox" name="category" onChange={onChange} />
+                {title}
             </label>
-            <span className="amount">{props.value}</span>
+            <span className="amount">{value}</span>
         </div>
     );
 }

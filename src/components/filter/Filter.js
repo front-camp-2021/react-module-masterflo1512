@@ -4,9 +4,10 @@ import './filter.scss';
 import { FilterList } from './filter-list/FilterList.js'
 import { backendUrl } from '../../constants'
 
-export function Filter() {
+export function Filter({ setCategoriesFilter, setBrandsFilter }) {
     const [categoriesList, setCategoriesList] = useState([])
     const [brandsList, setBrandsList] = useState([])
+
     useEffect(() => {
         axios.get(`${backendUrl}categories`)
             .then(res => {
@@ -78,9 +79,9 @@ export function Filter() {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <FilterList list={categoriesList} title="Category" />
+                <FilterList list={categoriesList} title="Category" setFilter={setCategoriesFilter} />
                 <div className="divider"></div>
-                <FilterList list={brandsList} title="Brand" />
+                <FilterList list={brandsList} title="Brand" setFilter={setBrandsFilter} />
             </div>
             <div className="btn">
                 <button className="btn-filters">
