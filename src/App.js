@@ -22,7 +22,7 @@ function App() {
   const [totalProducts, setTotalProducts] = useState(0)
   const [categoriesFilter, setCategoriesFilter] = useState([])
   const [brandsFilter, setBrandsFilter] = useState([])
-  console.log(categoriesFilter);
+
   useEffect(() => {
     axios.get(`${backendUrl}products?_limit=10&_page=${currentPage}&q=${searchData}&${getQueryFilter(categoriesFilter, 'category')}&${getQueryFilter(brandsFilter, 'brand')}`)
       .then(res => {
@@ -40,7 +40,7 @@ function App() {
       <Header />
       <div className="row">
         <div className="col-md-4 col-ms-6">
-          <Filter setCategoriesFilter={setCategoriesFilter} setBrandsFilter={setBrandsFilter} />
+          <Filter categoriesFilter={categoriesFilter} brandsFilter={brandsFilter} setCategoriesFilter={setCategoriesFilter} setBrandsFilter={setBrandsFilter} />
         </div>
         <div className="col-md-8 col-ms-6">
           <Search searchData={searchData} setSearchData={setSearchData} totalProducts={totalProducts} />
@@ -48,7 +48,6 @@ function App() {
         </div>
       </div>
       <Pagination pages={Math.ceil(totalProducts / 10)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-
     </div>
   );
 }

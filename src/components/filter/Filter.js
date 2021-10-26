@@ -4,7 +4,7 @@ import './filter.scss';
 import { FilterList } from './filter-list/FilterList.js'
 import { backendUrl } from '../../constants'
 
-export function Filter({ setCategoriesFilter, setBrandsFilter }) {
+export function Filter({ setCategoriesFilter, setBrandsFilter, categoriesFilter, brandsFilter }) {
     const [categoriesList, setCategoriesList] = useState([])
     const [brandsList, setBrandsList] = useState([])
 
@@ -29,6 +29,10 @@ export function Filter({ setCategoriesFilter, setBrandsFilter }) {
             })
 
     }, [])
+    function clearAllFilters() {
+        setCategoriesFilter([]);
+        setBrandsFilter([])
+    }
     return (
         <div className="filters-container">
             <div className="filters-header">
@@ -79,12 +83,12 @@ export function Filter({ setCategoriesFilter, setBrandsFilter }) {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <FilterList list={categoriesList} title="Category" setFilter={setCategoriesFilter} />
+                <FilterList list={categoriesList} title="Category" setFilter={setCategoriesFilter} filters={categoriesFilter} />
                 <div className="divider"></div>
-                <FilterList list={brandsList} title="Brand" setFilter={setBrandsFilter} />
+                <FilterList list={brandsList} title="Brand" setFilter={setBrandsFilter} filters={brandsFilter} />
             </div>
             <div className="btn">
-                <button className="btn-filters">
+                <button className="btn-filters" onClick={clearAllFilters} >
                     <span className="btn-title">clear all filters</span>
                 </button>
             </div>
