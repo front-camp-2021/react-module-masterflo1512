@@ -8,7 +8,7 @@ export function Cart() {
         <div>
             <h1>cart</h1>
             <ul>
-                {cart.map(item => <CardItem image={item.images[0]} title={item.title} rating={item.rating} price={item.price} category={item.category} brand={item.brand} />)}
+                {cart.map(item => <CardItem image={item.images} title={item.title} rating={item.rating} price={item.price} category={item.category} brand={item.brand} />)}
             </ul>
         </div>
     )
