@@ -1,4 +1,23 @@
+import { useDispatch } from 'react-redux'
+
 function CardItem(props) {
+
+    const dispatch = useDispatch()
+    const addToWishList = (event) => {
+        dispatch({
+            type: 'addToWishList',
+            product: props
+        })
+    }
+    const addToCart = (event) => {
+        dispatch({
+            type: 'addToCart',
+            product: props
+        })
+    }
+
+
+
     return (
         <div className="col-lg-4 col-md-6">
             <section className="card-container">
@@ -23,7 +42,7 @@ function CardItem(props) {
                     </div>
                 </div>
                 <div className="wish-add">
-                    <button className="wishlist-button product-button">
+                    <button className="wishlist-button product-button" onClick={addToWishList}>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g style={{ mixBlendMode: 'color-burn' }}>
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -33,7 +52,7 @@ function CardItem(props) {
                         </svg>
                         <span className="button-title">Wishlist</span>
                     </button>
-                    <button className="add-button product-button">
+                    <button className="add-button product-button" onClick={addToCart}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.737212" fillRule="evenodd" clipRule="evenodd"
                                 d="M4.52469 1L1.64958 4.6V17.2C1.64958 18.1941 2.50774 19 3.56632 19H16.9835C18.0421 19 18.9003 18.1941 18.9003 17.2V4.6L16.0251 1H4.52469Z"

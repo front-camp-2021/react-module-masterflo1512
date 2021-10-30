@@ -39,9 +39,23 @@
     align-items: center;
 }
 
+.btn-fav-cart {
+    display: flex;
+    justify-content: space-between;
+}
+
 .btn-favorite {
-    width: 45px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background: #6F64F8;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 0;
+}
+.btn-cart {
+    width: 30px;
+    height: 30px;
     background: #6F64F8;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;

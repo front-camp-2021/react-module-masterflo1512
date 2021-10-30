@@ -7,6 +7,8 @@ import { Productlist } from './components/product-list/Product-list.js'
 import { Pagination } from './components/pagination/Pagination.js'
 import { backendUrl } from './constants'
 
+
+
 function getQueryFilter(filters, filterName) {
   return filters
     .map((elem) => {
@@ -22,6 +24,8 @@ function App() {
   const [totalProducts, setTotalProducts] = useState(0)
   const [categoriesFilter, setCategoriesFilter] = useState([])
   const [brandsFilter, setBrandsFilter] = useState([])
+  const [wishlist, setWishList] = useState([])
+  const [cartList, setCartList] = useState([])
 
   useEffect(() => {
     axios.get(`${backendUrl}products?_limit=10&_page=${currentPage}&q=${searchData}&${getQueryFilter(categoriesFilter, 'category')}&${getQueryFilter(brandsFilter, 'brand')}`)
@@ -44,7 +48,7 @@ function App() {
         </div>
         <div className="col-md-8 col-ms-6">
           <Search searchData={searchData} setSearchData={setSearchData} totalProducts={totalProducts} />
-          <Productlist list={products} />
+          <Productlist list={products} setWishList={setWishList} setCartList={setCartList} />
         </div>
       </div>
       <Pagination pages={Math.ceil(totalProducts / 10)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
