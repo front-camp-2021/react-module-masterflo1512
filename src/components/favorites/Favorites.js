@@ -7,9 +7,9 @@ export function Favorites() {
     return (
         <div>
             <h1>My favorites</h1>
-            <ul>
-                {favorites.map(item => <CardItem image={item.images} title={item.title} rating={item.rating} price={item.price} category={item.category} brand={item.brand} />)}
-            </ul>
+            <div className="product-list row">
+                {favorites.map(item => <CardItem image={item.image} title={item.title} rating={item.rating} price={item.price} category={item.category} brand={item.brand} id={item.id} />)}
+            </div>
         </div>
     )
 }

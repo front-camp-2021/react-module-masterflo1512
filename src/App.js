@@ -6,6 +6,7 @@ import { Search } from './components/search/Search.js'
 import { Productlist } from './components/product-list/Product-list.js'
 import { Pagination } from './components/pagination/Pagination.js'
 import { backendUrl } from './constants'
+import { Favorites } from './components/favorites/Favorites.js'
 
 
 
@@ -26,6 +27,7 @@ function App() {
   const [brandsFilter, setBrandsFilter] = useState([])
   const [wishlist, setWishList] = useState([])
   const [cartList, setCartList] = useState([])
+  const [countWishList, setCountWishList] = useState([])
 
   useEffect(() => {
     axios.get(`${backendUrl}products?_limit=10&_page=${currentPage}&q=${searchData}&${getQueryFilter(categoriesFilter, 'category')}&${getQueryFilter(brandsFilter, 'brand')}`)
@@ -47,7 +49,7 @@ function App() {
           <Filter categoriesFilter={categoriesFilter} brandsFilter={brandsFilter} setCategoriesFilter={setCategoriesFilter} setBrandsFilter={setBrandsFilter} />
         </div>
         <div className="col-md-8 col-ms-6">
-          <Search searchData={searchData} setSearchData={setSearchData} totalProducts={totalProducts} />
+          <Search searchData={searchData} setSearchData={setSearchData} totalProducts={totalProducts} countWishList={wishlist.length} />
           <Productlist list={products} setWishList={setWishList} setCartList={setCartList} />
         </div>
       </div>

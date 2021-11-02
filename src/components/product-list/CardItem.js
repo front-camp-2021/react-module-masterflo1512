@@ -1,22 +1,52 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function CardItem(props) {
-
+    const favorites = useSelector(state => state.favorites)
+    const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
-    const addToWishList = (event) => {
+
+    const addToWishList = () => {
         dispatch({
             type: 'addToWishList',
             product: props
         })
     }
-    const addToCart = (event) => {
+
+    const addToCart = () => {
         dispatch({
             type: 'addToCart',
             product: props
         })
     }
 
+    const removeFromWishList = () => {
+        dispatch({
+            type: 'removeFromWishList',
+            product: props
+        })
+    }
 
+    const removeFromCart = () => {
+        dispatch({
+            type: 'removeFromCart',
+            product: props
+        })
+    }
+
+    const isFavorite = favorites.map(elem => elem.id).includes(props.id)
+    const onClickWishList = () => {
+        if (isFavorite) {
+            removeFromWishList();
+        } else addToWishList();
+    }
+
+    const isCart = cart.map(elem => elem.id).includes(props.id)
+    const onClickCart = () => {
+        if (isCart) {
+            removeFromCart();
+        } else addToCart();
+
+    }
 
     return (
         <div className="col-lg-4 col-md-6">
@@ -42,7 +72,7 @@ function CardItem(props) {
                     </div>
                 </div>
                 <div className="wish-add">
-                    <button className="wishlist-button product-button" onClick={addToWishList}>
+                    <button className="wishlist-button product-button" onClick={onClickWishList}>
                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g style={{ mixBlendMode: 'color-burn' }}>
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -50,9 +80,9 @@ function CardItem(props) {
                                     stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </g>
                         </svg>
-                        <span className="button-title">Wishlist</span>
+                        <span className="button-title">{`${isFavorite ? "Remove" : "Wishlist"} `}</span>
                     </button>
-                    <button className="add-button product-button" onClick={addToCart}>
+                    <button className="add-button product-button" onClick={onClickCart}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.737212" fillRule="evenodd" clipRule="evenodd"
                                 d="M4.52469 1L1.64958 4.6V17.2C1.64958 18.1941 2.50774 19 3.56632 19H16.9835C18.0421 19 18.9003 18.1941 18.9003 17.2V4.6L16.0251 1H4.52469Z"
@@ -63,7 +93,7 @@ function CardItem(props) {
                                 d="M14.5876 9C14.5876 10.6569 12.8981 12 10.814 12C8.72991 12 7.04042 10.6569 7.04042 9"
                                 stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span className="button-title">Add to cart</span>
+                        <span className="button-title">{`${isCart ? "Remove" : "Add to cart"} `}</span>
                     </button>
                 </div>
             </section>

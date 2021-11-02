@@ -1,7 +1,10 @@
 import './search.scss';
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 export function Search(props) {
     const { setSearchData, searchData, totalProducts } = props
+    const favorites = useSelector(state => state.favorites)
+    const cart = useSelector(state => state.cart)
 
 
     const handleFilter = (event) => {
@@ -23,6 +26,9 @@ export function Search(props) {
                                     d="M14.9304 2.14929C14.1856 1.41343 13.1751 1 12.1214 1C11.0678 1 10.0573 1.41343 9.31241 2.14929L8.54698 2.90512L7.78154 2.14929C6.23017 0.61741 3.7149 0.617411 2.16353 2.14929C0.612157 3.68118 0.612157 6.16485 2.16353 7.69674L2.92896 8.45256L8.54698 14L14.165 8.45256L14.9304 7.69674C15.6756 6.96122 16.0943 5.96344 16.0943 4.92302C16.0943 3.88259 15.6756 2.88481 14.9304 2.14929Z"
                                     stroke="white" strokeWidth="2" strokeLinejoin="round" strokeLinejoin="round" />
                             </svg>
+                            <span className="total-items-in-wishList">
+                                {favorites.length}
+                            </span>
                         </button>
                     </Link>
                     <Link to="/cart">
@@ -37,6 +43,9 @@ export function Search(props) {
                                     d="M14.5876 9C14.5876 10.6569 12.8981 12 10.814 12C8.72991 12 7.04042 10.6569 7.04042 9"
                                     stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
+                            <span className="total-items-in-cartItem">
+                                {cart.length}
+                            </span>
                         </button>
                     </Link>
                 </div>
