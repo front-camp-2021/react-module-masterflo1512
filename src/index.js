@@ -1,33 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { createStore } from "redux";
-import rootReducer from "./reducers"
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from "./reducers";
 import App from "./App";
 import { Favorites } from "./components/favorites/Favorites";
 import { Cart } from "./components/cart/Cart";
 import "./index.scss";
 
-
-
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store} >
+    <Provider store={store}>
       <BrowserRouter>
-        <Switch>
-          <Route path="/store" component={App} />
-          <Route path="/favorites" component={Favorites} />
-          <Route path="/cart" component={Cart} />
-
-          <Redirect to="/store" />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/store" element={<App />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route render={() => <Navigate to="about-us" />} />
+        </Routes>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode >,
+  </React.StrictMode>,
 
   document.getElementById("root")
 );
