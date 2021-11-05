@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import "./filter.scss";
 import { FilterList } from "./filter-list/FilterList.js";
 import { backendUrl } from "../../constants";
+import { DoubleSlider } from "../double-slider";
 
 export function Filter({
+  minPrice,
+  maxPrice,
+  setMinPrice,
+  setMaxPrice,
   setCategoriesFilter,
   setBrandsFilter,
   categoriesFilter,
@@ -35,6 +40,7 @@ export function Filter({
       );
     });
   }, []);
+
   function clearAllFilters() {
     setCategoriesFilter([]);
     setBrandsFilter([]);
@@ -69,38 +75,26 @@ export function Filter({
       </div>
       <div className="filters">
         <div className="price-range">
-          <h3 className="filter-title">Multi range</h3>
+          <h3 className="filter-title">
+            Price ({minPrice} - {maxPrice})
+          </h3>
           <div className="prices">
-            <div>
-              <label>
-                <input type="radio" name="price" />
-                10$
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="radio" name="price" />
-                10-100$
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="radio" name="price" />
-                100-500$
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="radio" name="price" />
-                500$
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="radio" name="price" />
-                All
-              </label>
-            </div>
+            <DoubleSlider
+              domain={[0, 85000]}
+              min={minPrice}
+              max={maxPrice}
+              step={100}
+              onChange={({ min, max }) => {
+                setMinPrice(min);
+                setMaxPrice(max);
+              }}
+            />
+          </div>
+        </div>
+        <div className="rating-range">
+          <h3 className="filter-title">Rating</h3>
+          <div className="ratings">
+            <DoubleSlider domain={[0, 5]} min={0} max={5} step={0.01} />
           </div>
         </div>
         <div className="divider"></div>
