@@ -8,6 +8,7 @@ import rootReducer from "./reducers";
 import App from "./App";
 import { Favorites } from "./components/favorites/Favorites";
 import { Cart } from "./components/cart/Cart";
+import { Header } from "./components/header/Header.js";
 import "./index.scss";
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -16,6 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/store" element={<App />} />

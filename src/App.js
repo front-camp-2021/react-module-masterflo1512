@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Header } from "./components/header/Header.js";
 import { Filter } from "./components/filter/Filter.js";
 import { Search } from "./components/search/Search.js";
 import { Productlist } from "./components/product-list/Product-list.js";
@@ -55,11 +54,18 @@ function App() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [brandsFilter, categoriesFilter, maxPrice, minPrice, maxRating, minRating, searchData]);
+  }, [
+    brandsFilter,
+    categoriesFilter,
+    maxPrice,
+    minPrice,
+    maxRating,
+    minRating,
+    searchData,
+  ]);
 
   return (
     <div className="container">
-      <Header />
       <div className="row">
         <div className="col-md-4 col-ms-6">
           <Filter
