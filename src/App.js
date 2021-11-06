@@ -13,6 +13,8 @@ function App() {
   const [searchData, setSearchData] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(85000);
+  const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(5);
   const [totalProducts, setTotalProducts] = useState(0);
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [brandsFilter, setBrandsFilter] = useState([]);
@@ -24,6 +26,8 @@ function App() {
       q: searchData,
       price_lte: maxPrice,
       price_gte: minPrice,
+      rating_lte: maxRating,
+      rating_gte: minRating,
     });
 
     brandsFilter.forEach((f) => {
@@ -44,12 +48,14 @@ function App() {
     currentPage,
     maxPrice,
     minPrice,
+    maxRating,
+    minRating,
     searchData,
   ]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [brandsFilter, categoriesFilter, maxPrice, minPrice, searchData]);
+  }, [brandsFilter, categoriesFilter, maxPrice, minPrice, maxRating, minRating, searchData]);
 
   return (
     <div className="container">
@@ -61,6 +67,10 @@ function App() {
             maxPrice={maxPrice}
             setMinPrice={setMinPrice}
             setMaxPrice={setMaxPrice}
+            minRating={minRating}
+            maxRating={maxRating}
+            setMinRating={setMinRating}
+            setMaxRating={setMaxRating}
             categoriesFilter={categoriesFilter}
             brandsFilter={brandsFilter}
             setCategoriesFilter={setCategoriesFilter}

@@ -10,6 +10,10 @@ export function Filter({
   maxPrice,
   setMinPrice,
   setMaxPrice,
+  minRating,
+  maxRating,
+  setMinRating,
+  setMaxRating,
   setCategoriesFilter,
   setBrandsFilter,
   categoriesFilter,
@@ -24,7 +28,7 @@ export function Filter({
         res.data.map((category) => {
           return {
             title: category,
-            value: 100,
+            value: '',
           };
         })
       );
@@ -34,7 +38,7 @@ export function Filter({
         res.data.map((brand) => {
           return {
             title: brand,
-            value: 100,
+            value: '',
           };
         })
       );
@@ -92,9 +96,20 @@ export function Filter({
           </div>
         </div>
         <div className="rating-range">
-          <h3 className="filter-title">Rating</h3>
+          <h3 className="filter-title">
+            Rating ({minRating} - {maxRating})
+          </h3>
           <div className="ratings">
-            <DoubleSlider domain={[0, 5]} min={0} max={5} step={0.01} />
+            <DoubleSlider
+              domain={[0, 5]}
+              min={minRating}
+              max={maxRating}
+              step={0.01}
+              onChange={({ min, max }) => {
+                setMinRating(min);
+                setMaxRating(max);
+              }}
+            />
           </div>
         </div>
         <div className="divider"></div>

@@ -37,9 +37,10 @@ export function Search(props) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="total-items-in-wishList">
+              {favorites.length > 0 ? <span className="total-items-in-wishList" >
                 {favorites.length}
-              </span>
+              </span> : null}
+
             </button>
           </Link>
           <Link to="/cart">
@@ -78,7 +79,9 @@ export function Search(props) {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span className="total-items-in-cartItem">{cart.length}</span>
+              {cart.length > 0 ? <span className="total-items-in-cartItem" >
+                {cart.length}
+              </span> : null}
             </button>
           </Link>
         </div>
