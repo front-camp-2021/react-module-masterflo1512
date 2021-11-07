@@ -1,32 +1,29 @@
-import { Search } from "./Search";
-import { render, screen, waitFor } from "@testing-library/react";
+import configureMockStore from "redux-mock-store";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Search } from "./Search";
 
-jest.mock("react-redux", () => {
-  const ActualReactRedux = jest.requireActual("react-redux");
-  return {
-    ...ActualReactRedux,
-    useSelector: () => [],
-  };
-});
-
-jest.mock("react-router-dom", () => {
-  const ActualReactRouterDom = jest.requireActual("react-router-dom");
-  return {
-    ...ActualReactRouterDom,
-    Link: ({ children }) => <a>{children}</a>,
-  };
-});
+const mockStore = configureMockStore();
 
 describe("Search component", () => {
   test("trims user input", async () => {
+    const store = mockStore({
+      favorites: [],
+      cart: [],
+    });
     const setSearchData = jest.fn();
     const { getByRole } = render(
-      <Search
-        setSearchData={setSearchData}
-        searchData={""}
-        totalProducts={10}
-      />
+      <BrowserRouter>
+        <Provider store={store}>
+          <Search
+            setSearchData={setSearchData}
+            searchData={""}
+            totalProducts={10}
+          />
+        </Provider>
+      </BrowserRouter>
     );
     const input = getByRole("searchbox");
     userEvent.type(input, " Hewlett-Packard ");
