@@ -11,7 +11,7 @@ export function Search({ setSearchData, searchData, totalProducts }) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setSearchData(searchValue);
+      setSearchData(searchValue.trim());
     }, 300);
     return () => {
       clearTimeout(timeout);

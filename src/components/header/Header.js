@@ -5,11 +5,13 @@ import { BreadCrumbsList } from "./brd-crum-list/BrdCrList";
 export function Header() {
   const breadCrumbsTitles = ["eCommerce", "Electronics"];
   return (
-    <div>
-      <div className="logo-block">
-        <img src={logo} alt="logo" width="80px " />
-        <h1 className="header-name-logo">Online Store</h1>
-      </div>
+    <div className='header-block'>
+      <a href="http://localhost:3000/">
+        <div className="logo-block">
+          <img src={logo} alt="logo" width="80px " />
+          <h1 className="header-name-logo">Online Store</h1>
+        </div>
+      </a>
       <div className="navigation">
         <svg
           width="17"
