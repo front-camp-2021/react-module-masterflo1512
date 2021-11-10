@@ -17,6 +17,7 @@ function App() {
   const [totalProducts, setTotalProducts] = useState(0);
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [brandsFilter, setBrandsFilter] = useState([]);
+  
 
   useEffect(() => {
     const queryParams = new URLSearchParams({

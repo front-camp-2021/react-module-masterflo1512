@@ -21,6 +21,7 @@ export function Filter({
 }) {
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
+  const [isOpened, setIsOpened] = useState(true);
 
   useEffect(() => {
     axios.get(`${backendUrl}categories`).then((res) => {
@@ -54,8 +55,8 @@ export function Filter({
     <div className="filters-container">
       <div className="filters-header">
         <h2>Filters</h2>
-        <button className="collapse-filters-btn">
-          <svg
+        <button className="collapse-filters-btn" onClick={() => setIsOpened(!isOpened)}>
+          <svg className={isOpened ? 'rotate' : ''}
             width="16"
             height="13"
             viewBox="0 0 16 13"
@@ -77,7 +78,8 @@ export function Filter({
           </svg>
         </button>
       </div>
-      <div className="filters">
+      <div className="filters" style={{ display: isOpened ? "block" : "none", }}>
+
         <div className="price-range">
           <h3 className="filter-title">
             Price ({minPrice} - {maxPrice})
@@ -127,7 +129,7 @@ export function Filter({
           filters={brandsFilter}
         />
       </div>
-      <div className="btn">
+      <div className="btn" style={{ display: isOpened ? "block" : "none", }}>
         <button className="btn-filters" onClick={clearAllFilters}>
           <span className="btn-title">clear all filters</span>
         </button>

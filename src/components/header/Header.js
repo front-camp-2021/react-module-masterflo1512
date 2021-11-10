@@ -1,17 +1,18 @@
 import logo from "./logo.png";
 import "./header.scss";
 import { BreadCrumbsList } from "./brd-crum-list/BrdCrList";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const breadCrumbsTitles = ["eCommerce", "Electronics"];
   return (
     <div className='header-block'>
-      <a href="http://localhost:3000/">
+      <Link to="/store">
         <div className="logo-block">
-          <img src={logo} alt="logo" width="80px " />
+          <img src={logo} alt="logo" />
           <h1 className="header-name-logo">Online Store</h1>
         </div>
-      </a>
+      </Link>
       <div className="navigation">
         <svg
           width="17"
