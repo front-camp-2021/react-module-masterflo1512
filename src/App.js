@@ -17,7 +17,7 @@ function App() {
   const [totalProducts, setTotalProducts] = useState(0);
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [brandsFilter, setBrandsFilter] = useState([]);
-  
+  const [isFiltersOpened, setIsFiltersOpened] = useState(true);
 
   useEffect(() => {
     const queryParams = new URLSearchParams({
@@ -68,8 +68,10 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-4 col-ms-6">
+          <div className={isFiltersOpened ? "col-md-4 col-ms-6" : "col-md-1 col-ms-2"}>
           <Filter
+            isOpened={isFiltersOpened}
+            setIsOpened={setIsFiltersOpened}
             minPrice={minPrice}
             maxPrice={maxPrice}
             setMinPrice={setMinPrice}
@@ -84,7 +86,7 @@ function App() {
             setBrandsFilter={setBrandsFilter}
           />
         </div>
-        <div className="col-md-8 col-ms-6">
+          <div className={isFiltersOpened ? "col-md-8 col-ms-6" : "col-md-11 col-ms-10" }>
           <Search
             searchData={searchData}
             setSearchData={setSearchData}

@@ -7,7 +7,8 @@ export function Cart() {
 
   return (
     <div>
-      <h1>cart</h1>
+      <h1>Cart</h1>
+      <h2>There's nothing in your cart yet. Try adding some products!</h2>
       <ul>
         {cart.map((item) => (
           <CardItem

@@ -2,6 +2,10 @@ import "./product-item.scss";
 import CardItem from "./CardItem.js";
 
 export function Productlist(props) {
+  if (props.list.length === 0) {
+    return <h1>Sorry, no products found :(</h1>
+  }
+
   return (
     <div className="product-list row">
       {props.list.map((item) => (

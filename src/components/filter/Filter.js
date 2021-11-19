@@ -6,6 +6,8 @@ import { backendUrl } from "../../constants";
 import { DoubleSlider } from "../double-slider";
 
 export function Filter({
+  isOpened,
+  setIsOpened,
   minPrice,
   maxPrice,
   setMinPrice,
@@ -21,7 +23,6 @@ export function Filter({
 }) {
   const [categoriesList, setCategoriesList] = useState([]);
   const [brandsList, setBrandsList] = useState([]);
-  const [isOpened, setIsOpened] = useState(true);
 
   useEffect(() => {
     axios.get(`${backendUrl}categories`).then((res) => {
@@ -54,9 +55,9 @@ export function Filter({
   return (
     <div className="filters-container">
       <div className="filters-header">
-        <h2>Filters</h2>
-        <button className="collapse-filters-btn" onClick={() => setIsOpened(!isOpened)}>
-          <svg className={isOpened ? 'rotate' : ''}
+        {isOpened ? <h2>Filters</h2> : null}
+          <button title={isOpened ? 'Close filters' : 'Open filters'} className="collapse-filters-btn" onClick={() => setIsOpened(!isOpened)}>
+          <svg className={isOpened ? '' : 'rotate'}
             width="16"
             height="13"
             viewBox="0 0 16 13"
